@@ -1,21 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnarciso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/15 15:50:12 by rnarciso          #+#    #+#             */
-/*   Updated: 2017/01/22 21:58:04 by rnarciso         ###   ########.fr       */
+/*   Created: 2016/10/17 20:56:34 by rnarciso          #+#    #+#             */
+/*   Updated: 2016/10/19 18:49:13 by rnarciso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-#define BUFF_SIZE 32
-#include "libft/libft.h"
-#include <stdlib.h>
-#include <unistd.h>
-#include <fcntl.h>
-int		get_next_line(const int fd, char **line);
-#endif
+#include "libft.h"
+
+char	*ft_strstr(const char *big, const char *little)
+{
+	int len;
+	int i;
+	int j;
+
+	len = ft_strlen(little);
+	i = 0;
+	j = 0;
+	if (len == 0)
+		return ((char *)big);
+	while (big[i])
+	{
+		while (little[j] == big[i + j])
+		{
+			if (j == len - 1)
+				return ((char *)big + i);
+			j++;
+		}
+		j = 0;
+		i++;
+	}
+	return (0);
+}
